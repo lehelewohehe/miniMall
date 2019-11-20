@@ -8,14 +8,43 @@
 
 // // 访问 Person 类身上的  info 静态属性
 // console.log(Person.info)
+//导入依赖的包
 import Vue from 'vue'
 import MintUI from 'mint-ui'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+
+
+//在vue上挂载导入的包
+Vue.use(MintUI)
+Vue.use(VueRouter)
+Vue.use(VueResource)
+
+
+//导入依赖的样式
 import 'mint-ui/lib/style.css'
 import './lib/mui/css/mui.css'
+import './lib/mui/css/icons-extra.css'
+
+
+//导入依赖的组件
 import app from './App.vue'
-Vue.use(MintUI)
+import { Swipe, SwipeItem } from 'mint-ui'
+
+//注册组件
+Vue.component(Swipe.name, Swipe)
+Vue.component(SwipeItem.name, SwipeItem)
+
+
+
+
+
+//导入路由
+import router from './router.js'
+
 
 var vm = new Vue({
   el: '#app',
+  router,
   render: c => c(app)
 })
