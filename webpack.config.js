@@ -20,16 +20,16 @@ module.exports = {
         }),
         new VueLoaderPlugin()
     ],
-    module:  {
+    module: {
         rules: [
             {
                 test: /\.css$/, use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.less$/, use: [ 'style-loader', 'css-loader', 'less-loader']
+                test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']
             },
             {
-                test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader']
+                test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(jpg|png|svg|jpeg|gif)$/, use: ['url-loader?limit=43960']
@@ -40,8 +40,8 @@ module.exports = {
         ]
     },
     resolve: {
-      alias: { // 修改 Vue 被导入时候的包的路径
-        // "vue$": "vue/dist/vue.js"
-      }
+        alias: { // 修改 Vue 被导入时候的包的路径
+            // "vue$": "vue/dist/vue.js"
+        }
     }
 }
