@@ -28,6 +28,7 @@ Vue.use(VueResource)
 
 //配置全局请求的根路径
 Vue.http.options.root = 'http://localhost:2000'
+Vue.http.options.emulateJSON = true
 
 //导入依赖的样式
 import 'mint-ui/lib/style.css'

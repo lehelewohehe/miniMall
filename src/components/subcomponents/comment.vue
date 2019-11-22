@@ -2,9 +2,9 @@
     <div class="cmt-container">
         <h3>发表评论</h3>
         <hr>
-        <textarea placeholder="请输入要BB的内容（做多吐槽120字）" maxlength="120"></textarea>
+        <textarea placeholder="请输入要BB的内容（做多吐槽120字）" maxlength="120" v-model="msg"></textarea>
 
-        <mt-button type="primary" size="large">发表评论</mt-button>
+        <mt-button type="primary" size="large" @click="postComments">发表评论</mt-button>
 
         <div class="cmt-list">
             <div class="cmt-item" v-for="(item, i) in comments" :key="i">
@@ -15,9 +15,7 @@
                     {{ item.content === 'undefined' ? '此用户很懒，嘛都没说': item.content }}
                 </div>
             </div>
-
         </div>
-
         <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
     </div>
 </template>
@@ -28,7 +26,8 @@
         data() {
             return {
                 pageIndex: 1, // 默认展示第一页数据
-                comments: [] // 所有的评论数据
+                comments: [], // 所有的评论数据
+                msg: ''
             };
         },
         created() {
@@ -45,14 +44,36 @@
                             // 每当获取新评论数据的时候，不要把老数据清空覆盖，而是应该以老数据，拼接上新数据
                             this.comments = this.comments.concat(result.body.message);
                         } else {
-                            Toast("获取评论失败！");
+                            Toast("获取评论失败！")
                         }
                     });
             },
             getMore() {
                 // 加载更多
                 this.pageIndex++;
-                this.getComments();
+                this.getComments()
+            },
+            postComments() {
+                //校验评论是否为空
+                if(this.msg.trim().length === 0) {
+                    return Toast('评论不能为空')
+                }
+                //校验成功后发送请求
+                this.$http.post('comments/' + this.id, {
+                    content: this.msg,
+                    user_name: '小红'
+                }).then(result => {
+                    if(result.body.status === 0) {
+                        this.comments.unshift({
+                            content:this.msg,
+                            user_name: '小红',
+                            add_time: Date.now()
+                        })
+                        this.msg = ''
+                    } else {
+                        Toast('评论失败')
+                    }
+                })
             }
         },
         props: ["id"]
