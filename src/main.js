@@ -22,16 +22,7 @@ Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
 // 安装 图片预览插件
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
-// Vue.use(preview, {
-//   mainClass: 'pswp--minimal--dark',
-//   barsSize: {top: 0, bottom: 0},
-//   captionEl: false,
-//   fullscreenEl: false,
-//   shareEl: false,
-//   bgOpacity: 0.85,
-//   tapToClose: true,
-//   tapToToggleControls: false
-// })
+
 
 //在vue上挂载导入的包
 Vue.use(MintUI)
@@ -51,6 +42,8 @@ import './lib/mui/css/icons-extra.css'
 //导入依赖的组件
 import app from './App.vue'
 import comment from './components/subcomponents/comment.vue'
+import numbox from './components/subcomponents/goodsinfo_numbox.vue'
+import swiper from './components/subcomponents/swiper.vue'
 // import { Swipe, SwipeItem, Button } from 'mint-ui'
 
 //注册组件
@@ -58,6 +51,8 @@ import comment from './components/subcomponents/comment.vue'
 // Vue.component(SwipeItem.name, SwipeItem)
 // Vue.component(Button.name, Button)
 Vue.component('comment-box', comment)
+Vue.component('numbox', numbox)
+Vue.component('swiper', swiper)
 
 
 
